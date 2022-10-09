@@ -20,7 +20,7 @@ WHERE p.sexo = 'M' AND grado.nombre = 'Grado en Ingeniería Informática (Plan 2
 ```sql
 SELECT pr.id_profesor, p.nombre, p.apellido1 AS primerApellido, p.apellido2 AS segundoApellido, COUNT(asi.id) AS cantAsignaturas
 FROM profesor AS pr LEFT JOIN asignatura AS asi ON pr.id_profesor = asi.id_profesor
-	RIGHT JOIN persona AS p ON p.id = pr.id_profesor
+	            RIGHT JOIN persona AS p ON p.id = pr.id_profesor
 WHERE p.tipo = 'profesor'					   
 GROUP BY pr.id_profesor, p.nombre, p.apellido1, p.apellido2 ORDER BY cantAsignaturas DESC;
 ```
