@@ -5,5 +5,5 @@
 SELECT p.apellido1, p.apellido2, p.nombre, dpto.nombre
 FROM persona as p INNER JOIN profesor as pr ON pr.id_profesor = p.id
         	      INNER JOIN departamento AS dpto ON dpto.id = pr.id_departamento
-ORDER BY p.apellido1 ASC, p.apellido2 ASC, p.nombre ASC;
+ORDER BY p.apellido1, p.apellido2, p.nombre ASC;
 ```
