@@ -28,3 +28,10 @@ SELECT grado.nombre, asi.tipo, sum(asi.creditos) AS totalCreditos
 FROM grado RIGHT JOIN asignatura as asi ON asi.id_grado = grado.id
 GROUP BY grado.nombre, asi.tipo ORDER BY totalCreditos;
 ```
+
+### 23.	Calcula cuántos profesores hay en cada departamento. El resultado sólo debe mostrar dos columnas, una con el nombre del departamento y otra con el número de profesores que hay en ese departamento. El resultado sólo debe incluir los departamentos que tienen profesores asociados y deberá estar ordenado de mayor a menor por el número de profesores.
+```sql
+SELECT dpto.nombre, COUNT(pr.id_profesor) as cantProfesores
+FROM departamento AS dpto INNER JOIN profesor AS pr ON pr.id_departamento = dpto.id
+GROUP BY dpto.nombre ORDER BY cantProfesores DESC;
+```
