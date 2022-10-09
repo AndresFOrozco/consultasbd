@@ -16,3 +16,9 @@ FROM persona as p INNER JOIN alumno_se_matricula_asignatura as asma ON asma.id_a
 		  INNER JOIN grado ON grado.id = asi.id_grado
 WHERE p.sexo = 'M' AND grado.nombre = 'Grado en Ingeniería Informática (Plan 2015)';
 ```
+### 14. Devuelve un listado con todas las asignaturas ofertadas en el Grado en Ingeniería Informática (Plan 2015).
+```sql
+SELECT asi.*
+FROM asignatura as asi RIGHT JOIN grado ON grado.id = asi.id_grado
+WHERE grado.nombre = 'Grado en Ingeniería Informática (Plan 2015)';
+```
