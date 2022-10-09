@@ -35,3 +35,10 @@ SELECT dpto.nombre, COUNT(pr.id_profesor) as cantProfesores
 FROM departamento AS dpto INNER JOIN profesor AS pr ON pr.id_departamento = dpto.id
 GROUP BY dpto.nombre ORDER BY cantProfesores DESC;
 ```
+
+### 26. Devuelve el listado de profesores que no han dado de alta su número de teléfono en la base de datos y además su nif termina en K.
+```sql
+SELECT p.*
+FROM profesor as pr INNER JOIN persona AS p ON p.id = pr.id_profesor
+WHERE p.telefono IS NULL AND p.nif LIKE '%K';
+```
