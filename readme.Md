@@ -8,6 +8,13 @@ FROM persona as p INNER JOIN profesor as pr ON pr.id_profesor = p.id
 ORDER BY p.apellido1, p.apellido2, p.nombre ASC;
 ```
 
+### 7. Devuelve un listado con los profesores que no están asociados a un departamento.
+```sql
+SELECT (p.nombre||''||p.apellido1||''||p.apellido2) AS nom_completo, pr.id_departamento
+FROM profesor AS pr INNER JOIN persona AS p ON p.id = pr.id_profesor
+WHERE pr.id_departamento IS NULL;
+```
+
 ### 9. Devuelve un listado con los datos de todas las alumnas que se han matriculado alguna vez en el Grado en Ingeniería Informática (Plan 2015).
 ```sql
 SELECT DISTINCT p.*
@@ -16,6 +23,7 @@ FROM persona as p INNER JOIN alumno_se_matricula_asignatura as asma ON asma.id_a
 		  INNER JOIN grado ON grado.id = asi.id_grado
 WHERE p.sexo = 'M' AND grado.nombre = 'Grado en Ingeniería Informática (Plan 2015)';
 ```
+
 ### 12.	Devuelve un listado con el número de asignaturas que imparte cada profesor. El listado debe tener en cuenta aquellos profesores que no imparten ninguna asignatura. El resultado mostrará cinco columnas: id, nombre, primer apellido, segundo apellido y número de asignaturas. El resultado estará ordenado de mayor a menor por el número de asignaturas.
 ```sql
 SELECT pr.id_profesor, p.nombre, p.apellido1 AS primerApellido, p.apellido2 AS segundoApellido, COUNT(asi.id) AS cantAsignaturas
