@@ -37,8 +37,7 @@ FROM profesor AS pr LEFT JOIN asignatura AS asi ON pr.id_profesor = asi.id_profe
 WHERE p.tipo = 'profesor'					   
 GROUP BY pr.id_profesor, p.nombre, p.apellido1, p.apellido2 ORDER BY cantAsignaturas DESC;
 ```
-### 13. Devuelve un listado con el primer apellido, segundo apellido y el nombre de todos los alumnos. El listado deberá estar ordenado
-alfabéticamente de menor a mayor por el primer apellido, segundo apellido y nombre. revisar
+### 13. Devuelve un listado con el primer apellido, segundo apellido y el nombre de todos los alumnos. El listado deberá estar ordenado alfabéticamente de menor a mayor por el primer apellido, segundo apellido y nombre. revisar
 ```sql
 SELECT DISTINCT p.apellido1, p.apellido2, p.nombre
 FROM alumno_se_matricula_asignatura AS asma INNER JOIN persona AS p ON p.id = asma.id_alumno
