@@ -29,13 +29,6 @@ WHERE p.sexo = 'M' AND grado.nombre = 'Grado en Ingeniería Informática (Plan 2
 SELECT nombre, id_profesor
 FROM asignatura WHERE id_profesor IS NULL;
 ```
-### 13. Devuelve un listado con el primer apellido, segundo apellido y el nombre de todos los alumnos. El listado deberá estar ordenado
-alfabéticamente de menor a mayor por el primer apellido, segundo apellido y nombre. revisar
-```ql
-SELECT DISTINCT p.apellido1, p.apellido2, p.nombre
-FROM alumno_se_matricula_asignatura AS asma INNER JOIN persona AS p ON p.id = asma.id_alumno
-ORDER BY p.apellido1, p.apellido2, p.nombre DESC;
-```
 ### 12.	Devuelve un listado con el número de asignaturas que imparte cada profesor. El listado debe tener en cuenta aquellos profesores que no imparten ninguna asignatura. El resultado mostrará cinco columnas: id, nombre, primer apellido, segundo apellido y número de asignaturas. El resultado estará ordenado de mayor a menor por el número de asignaturas.
 ```sql
 SELECT pr.id_profesor, p.nombre, p.apellido1 AS primerApellido, p.apellido2 AS segundoApellido, COUNT(asi.id) AS cantAsignaturas
@@ -44,6 +37,14 @@ FROM profesor AS pr LEFT JOIN asignatura AS asi ON pr.id_profesor = asi.id_profe
 WHERE p.tipo = 'profesor'					   
 GROUP BY pr.id_profesor, p.nombre, p.apellido1, p.apellido2 ORDER BY cantAsignaturas DESC;
 ```
+### 13. Devuelve un listado con el primer apellido, segundo apellido y el nombre de todos los alumnos. El listado deberá estar ordenado
+alfabéticamente de menor a mayor por el primer apellido, segundo apellido y nombre. revisar
+```sql
+SELECT DISTINCT p.apellido1, p.apellido2, p.nombre
+FROM alumno_se_matricula_asignatura AS asma INNER JOIN persona AS p ON p.id = asma.id_alumno
+ORDER BY p.apellido1, p.apellido2, p.nombre DESC;
+```
+
 ### 14. Devuelve un listado con todas las asignaturas ofertadas en el Grado en Ingeniería Informática (Plan 2015).
 ```sql
 SELECT asi.*
