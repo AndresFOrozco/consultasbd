@@ -1,4 +1,14 @@
 ## Actividad entregable corte II.sql
+
+### 1. Devuelve un listado con todos los alumnos que se han matriculado en alguna asignatura durante el curso escolar 2018/2019.
+
+```sql
+SELECT DISTINCT p.*
+FROM persona as p JOIN alumno_se_matricula_asignatura AS asma ON asma.id_alumno = p.id
+	          JOIN curso_escolar AS ce ON ce.id = asma.id_curso_escolar
+WHERE ce.anyo_inicio = 2018 AND ce.anyo_fin = 2019;
+```
+
 ### 2. Devuelve un listado de los profesores junto con el nombre del departamento al que están vinculados. El listado debe devolver cuatro columnas, primer apellido, segundo apellido, nombre y nombre del departamento. El resultado estará ordenado alfabéticamente de menor a mayor por los apellidos y el nombre.
 
 ```sql
