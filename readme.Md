@@ -29,7 +29,7 @@ WHERE p.sexo = 'M' AND grado.nombre = 'Grado en Ingeniería Informática (Plan 2
 SELECT nombre, id_profesor
 FROM asignatura WHERE id_profesor IS NULL;
 ```
-###13. Devuelve un listado con el primer apellido, segundo apellido y el nombre de todos los alumnos. El listado deberá estar ordenado
+### 13. Devuelve un listado con el primer apellido, segundo apellido y el nombre de todos los alumnos. El listado deberá estar ordenado
 alfabéticamente de menor a mayor por el primer apellido, segundo apellido y nombre. revisar
 ```ql
 SELECT DISTINCT p.apellido1, p.apellido2, p.nombre
