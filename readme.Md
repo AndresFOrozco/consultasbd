@@ -74,6 +74,15 @@ FROM grado INNER JOIN asignatura as asi ON asi.id_grado = grado.id
 GROUP BY grado.nombre, asi.tipo ORDER BY totalCreditos DESC;
 ```
 
+### 18.	Devuelve un listado con todos los departamentos que tienen alguna asignatura que no se haya impartido en ningún curso escolar. El resultado debe mostrar el nombre del departamento y el nombre de la asignatura que no se haya impartido nunca.
+```sql
+SELECT dpto.nombre, asi.nombre
+FROM departamento AS dpto LEFT JOIN profesor AS pr ON pr.id_departamento = dpto.id
+		          LEFT JOIN asignatura AS asi ON asi.id_profesor = pr.id_profesor
+			  LEFT JOIN alumno_se_matricula_asignatura AS asma ON asma.id_asignatura = asi.id
+WHERE asma.id_asignatura IS NULL AND asi.nombre IS NOT NULL;
+```
+
 ### 23.	Calcula cuántos profesores hay en cada departamento. El resultado sólo debe mostrar dos columnas, una con el nombre del departamento y otra con el número de profesores que hay en ese departamento. El resultado sólo debe incluir los departamentos que tienen profesores asociados y deberá estar ordenado de mayor a menor por el número de profesores.
 ```sql
 SELECT dpto.nombre, COUNT(pr.id_profesor) as cantProfesores
