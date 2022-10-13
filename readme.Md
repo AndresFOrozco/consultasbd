@@ -64,8 +64,7 @@ FROM profesor AS pr INNER JOIN persona AS p ON p.id = pr.id_profesor
 WHERE pr.id_departamento IS NULL;
 ```
 
-### 8 .Devuelve un listado con el nombre de todos los grados existentes en la base de datos
-y el número de asignaturas que tiene cada uno. Tenga en cuenta que pueden existir grados que no
+### 8 .Devuelve un listado con el nombre de todos los grados existentes en la base de datos y el número de asignaturas que tiene cada uno. Tenga en cuenta que pueden existir grados que no
 tienen asignaturas asociadas. Estos grados también tienen que aparecer en el listado.
 El resultado deberá estar ordenado de mayor a menor por el número de asignaturas.
 
