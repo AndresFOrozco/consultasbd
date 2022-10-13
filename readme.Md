@@ -18,10 +18,13 @@ FROM persona as p INNER JOIN profesor as pr ON pr.id_profesor = p.id
 ORDER BY p.apellido1, p.apellido2, p.nombre ASC;
 ```
 
-/*3.Devuelve un listado con los departamentos que no tienen profesores asociados.*/
+### 3. Devuelve un listado con los departamentos que no tienen profesores asociados.
+
+```sql
 select * from departamento
 left join profesor on departamento.id = profesor.id_departamento
 where profesor.id_profesor is null
+```
 
 ### 6. Devuelve un listado con el nombre de todos los grados existentes en la base de datos y el número de asignaturas que tiene cada uno, de los grados que tengan más de 40 asignaturas asociadas.
 ```sql
