@@ -18,6 +18,13 @@ FROM persona as p INNER JOIN profesor as pr ON pr.id_profesor = p.id
 ORDER BY p.apellido1, p.apellido2, p.nombre ASC;
 ```
 
+###6. Devuelve un listado con el nombre de todos los grados existentes en la base de datos y el número de asignaturas que tiene cada uno, de los grados que tengan más de 40 asignaturas asociadas.
+```sql
+SELECT gr.nombre, COUNT(asi.nombre) AS cantAsignatura
+FROM grado AS gr INNER JOIN asignatura AS asi ON asi.id_grado = gr.id
+GROUP BY gr.nombre HAVING COUNT(asi.nombre) > 40;
+```
+
 ### 7. Devuelve un listado con los profesores que no están asociados a un departamento.
 ```sql
 SELECT (p.nombre||''||p.apellido1||''||p.apellido2) AS nom_completo, pr.id_departamento
