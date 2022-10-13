@@ -100,6 +100,13 @@ FROM persona AS p INNER JOIN alumno_se_matricula_asignatura AS asma ON asma.id_a
 WHERE p.nif = '26902806M';
 ```
 
+### 21. Devuelve un listado con todos los departamentos y el número de profesores que hay en cada uno de ellos. Tenga en cuenta que pueden existir departamentos que no tienen profesores asociados. Estos departamentos también tienen que aparecer en el listado.
+```sql
+SELECT dpto.nombre, COUNT(pr.id_profesor) as cantProfesores
+FROM departamento AS dpto INNER JOIN profesor AS pr ON pr.id_departamento = dpto.id
+GROUP BY dpto.nombre ORDER BY cantProfesores DESC;
+```
+
 ### 23.	Calcula cuántos profesores hay en cada departamento. El resultado sólo debe mostrar dos columnas, una con el nombre del departamento y otra con el número de profesores que hay en ese departamento. El resultado sólo debe incluir los departamentos que tienen profesores asociados y deberá estar ordenado de mayor a menor por el número de profesores.
 ```sql
 SELECT dpto.nombre, COUNT(pr.id_profesor) as cantProfesores
