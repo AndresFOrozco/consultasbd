@@ -26,6 +26,28 @@ left join profesor on departamento.id = profesor.id_departamento
 where profesor.id_profesor is null
 ```
 
+### 4 .Devuelve el listado de las asignaturas que se imparten en el primer cuatrimestre, en el tercer curso del
+grado que tiene elidentificador 7.
+
+```sql
+select asignatura.nombre, curso, cuatrimestre, grado.id
+from asignatura
+join grado
+on grado.id = asignatura.id_grado
+where grado.id = 7 and asignatura.cuatrimestre =1 and curso =3;
+```
+### 5 .Devuelve un listado que muestre cuántos alumnos se han matriculado de alguna
+asignatura en cada uno de los cursos escolares. El resultado deberá mostrar dos columnas,
+una columna con el año de inicio del curso escolar y otra con el número de alumnos matriculados.
+
+```sql
+select curso_escolar.anyo_inicio, count (alumno_se_matricula_asignatura.id_alumno) as numero_alumnos_matriculados
+from alumno_se_matricula_asignatura
+join asignatura on asignatura.id = alumno_se_matricula_asignatura.id_asignatura
+join curso_escolar on curso_escolar.id = alumno_se_matricula_asignatura.id_curso_escolar
+group by curso_escolar.anyo_inicio
+```
+
 ### 6. Devuelve un listado con el nombre de todos los grados existentes en la base de datos y el número de asignaturas que tiene cada uno, de los grados que tengan más de 40 asignaturas asociadas.
 ```sql
 SELECT gr.nombre, COUNT(asi.nombre) AS cantAsignatura
