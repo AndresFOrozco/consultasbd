@@ -91,6 +91,15 @@ FROM departamento AS dpto LEFT JOIN profesor AS pr ON pr.id_departamento = dpto.
 WHERE asma.id_asignatura IS NULL AND asi.nombre IS NOT NULL;
 ```
 
+### 20. Devuelve un listado con el nombre de las asignaturas, año de inicio y año de fin del curso escolar del alumno con nif 26902806M.
+```sql
+SELECT asi.nombre, ce.anyo_inicio, ce.anyo_fin
+FROM persona AS p INNER JOIN alumno_se_matricula_asignatura AS asma ON asma.id_alumno = p.id
+                  INNER JOIN asignatura AS asi ON asi.id = asma.id_asignatura
+		  INNER JOIN curso_escolar AS ce ON ce.id = asma.id_curso_escolar
+WHERE p.nif = '26902806M';
+```
+
 ### 23.	Calcula cuántos profesores hay en cada departamento. El resultado sólo debe mostrar dos columnas, una con el nombre del departamento y otra con el número de profesores que hay en ese departamento. El resultado sólo debe incluir los departamentos que tienen profesores asociados y deberá estar ordenado de mayor a menor por el número de profesores.
 ```sql
 SELECT dpto.nombre, COUNT(pr.id_profesor) as cantProfesores
