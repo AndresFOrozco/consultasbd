@@ -67,6 +67,14 @@ SELECT asi.*
 FROM asignatura as asi RIGHT JOIN grado ON grado.id = asi.id_grado
 WHERE grado.nombre = 'Grado en Ingeniería Informática (Plan 2015)';
 ```
+
+### 16. Devuelve el número total de alumnas que hay.
+```sql
+SELECT DISTINCT COUNT(p.id) AS totalAlumnas
+FROM persona AS p
+WHERE p.sexo = 'M' AND p.tipo = 'alumno';
+```
+
 ### 17. Devuelve un listado que muestre el nombre de los grados y la suma del número total de créditos que hay para cada tipo de asignatura. El resultado debe tener tres columnas: nombre del grado, tipo de asignatura y la suma de los créditos de todas las asignaturas que hay de ese tipo. Ordene el resultado de mayor a menor por el número total de créditos.
 ```sql
 SELECT grado.nombre, asi.tipo, sum(asi.creditos) AS totalCreditos
