@@ -49,6 +49,7 @@ group by curso_escolar.anyo_inicio
 ```
 
 ### 6. Devuelve un listado con el nombre de todos los grados existentes en la base de datos y el número de asignaturas que tiene cada uno, de los grados que tengan más de 40 asignaturas asociadas.
+
 ```sql
 SELECT gr.nombre, COUNT(asi.nombre) AS cantAsignatura
 FROM grado AS gr INNER JOIN asignatura AS asi ON asi.id_grado = gr.id
@@ -56,10 +57,24 @@ GROUP BY gr.nombre HAVING COUNT(asi.nombre) > 40;
 ```
 
 ### 7. Devuelve un listado con los profesores que no están asociados a un departamento.
+
 ```sql
 SELECT (p.nombre||''||p.apellido1||''||p.apellido2) AS nom_completo, pr.id_departamento
 FROM profesor AS pr INNER JOIN persona AS p ON p.id = pr.id_profesor
 WHERE pr.id_departamento IS NULL;
+```
+
+### 8 .Devuelve un listado con el nombre de todos los grados existentes en la base de datos
+y el número de asignaturas que tiene cada uno. Tenga en cuenta que pueden existir grados que no
+tienen asignaturas asociadas. Estos grados también tienen que aparecer en el listado.
+El resultado deberá estar ordenado de mayor a menor por el número de asignaturas.
+
+```sql
+select grado.nombre, count(asignatura.id_grado ) as num_asignaturas
+from grado
+left join asignatura on asignatura.id_grado = grado.id
+group by grado.nombre
+order by num_asignaturas desc
 ```
 
 ### 9. Devuelve un listado con los datos de todas las alumnas que se han matriculado alguna vez en el Grado en Ingeniería Informática (Plan 2015).
