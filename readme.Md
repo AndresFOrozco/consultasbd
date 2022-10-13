@@ -26,8 +26,7 @@ left join profesor on departamento.id = profesor.id_departamento
 where profesor.id_profesor is null
 ```
 
-### 4 .Devuelve el listado de las asignaturas que se imparten en el primer cuatrimestre, en el tercer curso del
-grado que tiene elidentificador 7.
+### 4 .Devuelve el listado de las asignaturas que se imparten en el primer cuatrimestre, en el tercer curso del grado que tiene elidentificador 7.
 
 ```sql
 select asignatura.nombre, curso, cuatrimestre, grado.id
@@ -36,9 +35,7 @@ join grado
 on grado.id = asignatura.id_grado
 where grado.id = 7 and asignatura.cuatrimestre =1 and curso =3;
 ```
-### 5 .Devuelve un listado que muestre cuántos alumnos se han matriculado de alguna
-asignatura en cada uno de los cursos escolares. El resultado deberá mostrar dos columnas,
-una columna con el año de inicio del curso escolar y otra con el número de alumnos matriculados.
+### 5 .Devuelve un listado que muestre cuántos alumnos se han matriculado de algunaasignatura en cada uno de los cursos escolares. El resultado deberá mostrar dos columnas,una columna con el año de inicio del curso escolar y otra con el número de alumnos matriculados.
 
 ```sql
 select curso_escolar.anyo_inicio, count (alumno_se_matricula_asignatura.id_alumno) as numero_alumnos_matriculados
