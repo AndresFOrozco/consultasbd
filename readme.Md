@@ -80,6 +80,14 @@ FROM persona as p INNER JOIN alumno_se_matricula_asignatura as asma ON asma.id_a
 WHERE p.sexo = 'M' AND grado.nombre = 'Grado en Ingeniería Informática (Plan 2015)';
 ```
 
+### 10.	Averigua el nombre y los dos apellidos de los alumnos que no han dado de alta su número de teléfono en la base de datos.
+
+```sql
+SELECT p.nombre, p.apellido1, p.apellido2
+FROM persona AS p
+WHERE p.telefono IS NULL AND p.tipo = 'alumno';
+```
+
 ### 11. Devuelve un listado con las asignaturas que no tienen un profesor asignado.
 ```sql
 SELECT nombre, id_profesor
@@ -107,6 +115,14 @@ FROM asignatura as asi RIGHT JOIN grado ON grado.id = asi.id_grado
 WHERE grado.nombre = 'Grado en Ingeniería Informática (Plan 2015)';
 ```
 
+### 15.	Devuelve el listado de los alumnos que nacieron en 1999.
+
+```sql
+SELECT p.nombre, p.apellido1, p.apellido2, p.fecha_nacimiento
+FROM persona AS p
+WHERE EXTRACT (year from p.fecha_nacimiento) = 1999 AND p.tipo = 'alumno';
+```
+
 ### 16. Devuelve el número total de alumnas que hay.
 ```sql
 SELECT DISTINCT COUNT(p.id) AS totalAlumnas
@@ -130,6 +146,15 @@ FROM departamento AS dpto LEFT JOIN profesor AS pr ON pr.id_departamento = dpto.
 WHERE asma.id_asignatura IS NULL AND asi.nombre IS NOT NULL;
 ```
 
+### 19. Calcula cuántos alumnos nacieron en 1999.
+
+```sql 
+SELECT EXTRACT (year from p.fecha_nacimiento) AS anyo, COUNT (p.id) AS cantAlumnos
+FROM persona AS p
+WHERE EXTRACT (year from p.fecha_nacimiento) = 1999 AND p.tipo = 'alumno'
+GROUP BY EXTRACT (year from p.fecha_nacimiento);
+```
+
 ### 20. Devuelve un listado con el nombre de las asignaturas, año de inicio y año de fin del curso escolar del alumno con nif 26902806M.
 ```sql
 SELECT asi.nombre, ce.anyo_inicio, ce.anyo_fin
@@ -144,6 +169,15 @@ WHERE p.nif = '26902806M';
 SELECT dpto.nombre, COUNT(pr.id_profesor) as cantProfesores
 FROM departamento AS dpto INNER JOIN profesor AS pr ON pr.id_departamento = dpto.id
 GROUP BY dpto.nombre ORDER BY cantProfesores DESC;
+```
+
+### 22. Devuelve un listado con el nombre de todos los departamentos que tienen profesores que imparten alguna asignatura en el Grado en Ingeniería Informática (Plan 2015).
+```sql
+SELECT DISTINCT dpto.nombre
+FROM departamento AS dpto INNER JOIN profesor AS pr ON pr.id_departamento = dpto.id
+		          INNER JOIN asignatura AS asi ON asi.id_profesor = pr.id_profesor
+		          INNER JOIN grado AS gr ON gr.id = asi.id_grado
+WHERE dpto.id = pr.id_departamento AND pr.id_profesor = asi.id_profesor AND gr.id = asi.id_grado AND gr.nombre = 'Grado en Ingeniería Informática (Plan 2015)';
 ```
 
 ### 23.	Calcula cuántos profesores hay en cada departamento. El resultado sólo debe mostrar dos columnas, una con el nombre del departamento y otra con el número de profesores que hay en ese departamento. El resultado sólo debe incluir los departamentos que tienen profesores asociados y deberá estar ordenado de mayor a menor por el número de profesores.
