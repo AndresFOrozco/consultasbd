@@ -187,6 +187,22 @@ FROM departamento AS dpto INNER JOIN profesor AS pr ON pr.id_departamento = dpto
 GROUP BY dpto.nombre ORDER BY cantProfesores DESC;
 ```
 
+### 24. Devuelve un listado con los profesores que no imparten ninguna asignatura.
+```sql
+SELECT p.nombre, p.apellido1, p.apellido2
+FROM persona AS p INNER JOIN profesor AS pr ON pr.id_profesor = p.id
+		  LEFT JOIN asignatura AS asi ON asi.id_profesor = pr.id_profesor
+WHERE asi.id_profesor IS NULL;
+```
+
+### 25. Devuelve un listado con los nombres de todos los profesores y los departamentos que tienen vinculados. El listado también debe mostrar aquellos profesores que no tienen ningún departamento asociado. El listado debe devolver cuatro columnas, nombre del departamento, primer apellido, segundo apellido y nombre del profesor. El resultado estará ordenado alfabéticamente de menor a mayor por el nombre del departamento, apellidos y el nombre
+```sql
+SELECT dpto.nombre AS nombreDepartamento, p.apellido1, p.apellido2, p.nombre
+FROM persona AS p LEFT JOIN profesor AS pr ON pr.id_profesor = p.id
+	          LEFT JOIN departamento AS dpto ON dpto.id = pr.id_departamento
+ORDER BY dpto.nombre, p.apellido1, p.apellido2, p.nombre ASC;
+```
+
 ### 26. Devuelve el listado de profesores que no han dado de alta su número de teléfono en la base de datos y además su nif termina en K.
 ```sql
 SELECT p.*
